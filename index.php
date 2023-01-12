@@ -29,6 +29,8 @@
                                 <h2 class="fw-bold text-uppercase">Welcome Back!</h2>
                                 <p class="text-white-50 mb-3">Please login to continue</p>
 
+
+                                <!-- username input group -->
                                 <div class="d-flex mt-4">
                                     <div class="align-self-center">
                                         <span class="input-icon"> <i class="fas fa-user mx-1"></i> </span>
@@ -40,7 +42,7 @@
                                         <label>Username</label>
                                     </div>
                                 </div>
-
+                                <!-- password input group -->
                                 <div class="d-flex my-2">
                                     <div class="align-self-center">
                                         <span class="input-icon"> <i class="fas fa-key mx-1"></i> </span>
@@ -52,7 +54,7 @@
                                         <label>Password</label>
                                     </div>
                                 </div>
-
+                                <!-- Login Button -->
                                 <button class="btn btn-outline-primary btn-lg px-5" type="submit" id="submit-form">Login</button>
                             </div>
                         </div>
