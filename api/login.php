@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Takes raw data from the request
 $json = file_get_contents('php://input');
 
@@ -31,4 +32,31 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 $resp = curl_exec($curl);
 curl_close($curl);
-echo $resp;
+
+
+// $test = json_encode($resp);
+
+// $trans = array("{" => "", "}" => "");
+// $newString = strtr($resp, $trans);
+// $array = explode(',', $newString);
+
+if($resp){
+   $arr = json_decode($resp, true);
+
+   $_SESSION['loggedin'] = true;
+   $_SESSION['name'] = $arr['displayName'];
+   
+   echo json_encode($arr);
+}else{
+   echo $resp;
+}
+
+
+
+
+
+// if(isset($resp['displayName'])){
+//    echo 'exist';
+// }else{
+//    echo 'not';
+// }

@@ -1,5 +1,12 @@
 $(document).ready(() => {
     let data;
+
+    $("#password").keypress(function (event) {
+        if (event.keyCode === 13) {
+          $("#submit-form").click();
+        }
+      });
+
     //function when click the submit button
     $("#submit-form").on('click', (event) => {
         event.preventDefault();
@@ -12,7 +19,11 @@ $(document).ready(() => {
 
         //check if the textboxes are null
         if (!username || !password) {
-            alert("Please enter a valid username and password");
+            Swal.fire({
+                icon: 'error',
+                title: 'LOG IN FAILED',
+                text: 'Please enter a valid username and password',
+            })
             $("#submit-form").html('<span><span> Login </span></span>');
             $("#submit-form").prop("disabled", false);
             return;
@@ -27,18 +38,19 @@ $(document).ready(() => {
         //ajax call
         $.ajax({
             type: "POST",
-            url: 'api/index.php',
+            url: '../api/login.php',
             data: data,
             dataType: "json",
             success: (response) => {
+              
                 if (response.message) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error',
-                        text: 'Invalid username or password',
+                        title: 'LOG IN FAILED',
+                        text: 'The username or password you entered is incorrect. Please try again!',
                     })
                 } else {
-                    alert("Success!");
+                    window.location.replace('../index.php')
                 }
                 $("#submit-form").html('<span><span> Login </span></span>');
                 $("#submit-form").prop("disabled", false);
