@@ -42,18 +42,23 @@ $(document).ready(() => {
             data: data,
             dataType: "json",
             success: (response) => {
-              
-                if (response.message) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'LOG IN FAILED',
-                        text: 'The username or password you entered is incorrect. Please try again!',
-                    })
-                } else {
-                    window.location.replace('../index.php')
+                if(response === null){
+                    authenticate();
+                }else{
+                    if (response.message) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'LOG IN FAILED',
+                            text: 'The username or password you entered is incorrect. Please try again!',
+                        })
+                    } else {
+                        window.location.replace('../index.php')
+                    }
+                    $("#submit-form").html('<span><span> Login </span></span>');
+                    $("#submit-form").prop("disabled", false);
                 }
-                $("#submit-form").html('<span><span> Login </span></span>');
-                $("#submit-form").prop("disabled", false);
+              
+                
             },
             error: (xhr, status, error) => {
                 Swal.fire({

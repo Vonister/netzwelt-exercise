@@ -22,7 +22,7 @@ $headers = array(
 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
 //data
-$data = '{"username":"'.$data->username .'","password":"'.$data->password .'"}';
+$data = '{"username":"' . $data->username . '","password":"' . $data->password . '"}';
 
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 
@@ -33,30 +33,10 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 $resp = curl_exec($curl);
 curl_close($curl);
 
-
-// $test = json_encode($resp);
-
-// $trans = array("{" => "", "}" => "");
-// $newString = strtr($resp, $trans);
-// $array = explode(',', $newString);
-
-if($resp){
-   $arr = json_decode($resp, true);
-
+$arr = json_decode($resp, true);
+if (isset($arr['displayName'])) {
    $_SESSION['loggedin'] = true;
    $_SESSION['name'] = $arr['displayName'];
-   
-   echo json_encode($arr);
-}else{
-   echo $resp;
 }
 
-
-
-
-
-// if(isset($resp['displayName'])){
-//    echo 'exist';
-// }else{
-//    echo 'not';
-// }
+echo json_encode($arr);

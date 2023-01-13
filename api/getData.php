@@ -21,6 +21,6 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 $resp = curl_exec($curl);
 curl_close($curl);
-echo $resp;
 
-?>
+$arr = json_decode($resp, true);
+echo json_encode($arr);
